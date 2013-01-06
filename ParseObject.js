@@ -1,5 +1,7 @@
 var ParseObject = (function(input) {
-    var paths = input.path.split('/'),
+    
+    var delimiter = input.delimiter || '/',
+        paths = input.path.split(delimiter),
         check = input.target[paths.shift()],
         exists = typeof check != 'undefined',
         isLast = paths.length == 0;
@@ -13,8 +15,9 @@ var ParseObject = (function(input) {
             });
         } else {
             ParseObject({
-                path: paths.join('/'), 
-                target: check, 
+                path: paths.join(delimiter), 
+                target: check,
+                delimiter: delimiter,
                 parsed: input.parsed
             });
         }
