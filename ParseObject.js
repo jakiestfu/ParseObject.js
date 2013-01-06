@@ -15,7 +15,7 @@ var ParseObject = (function(input) {
             ParseObject({
                 path: paths.join('/'), 
                 target: check, 
-                parsed: returnFunc
+                parsed: input.parsed
             });
         }
     } else {
