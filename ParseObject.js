@@ -1,21 +1,25 @@
-var ParseObject = (function(path, obj, returnFunc) {
-    var paths = path.split('/'),
-        check = obj[paths.shift()],
+var ParseObject = (function(input) {
+    var paths = input.path.split('/'),
+        check = input.target[paths.shift()],
         exists = typeof check != 'undefined',
         isLast = paths.length == 0;
 
     if (exists) {
         if (isLast) {
-            returnFunc.call(undefined, {
+            input.parsed.call(undefined, {
                 exists: true,
                 type: typeof check,
                 obj: check
             });
         } else {
-            ParseObject(paths.join('/'), check, returnFunc);
+            ParseObject({
+                path: paths.join('/'), 
+                target: check, 
+                parsed: returnFunc
+            });
         }
     } else {
-        returnFunc.call(undefined, {
+        input.parsed.call(undefined, {
             exists: false,
             obj: false
         });
