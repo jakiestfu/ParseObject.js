@@ -23,8 +23,7 @@ var ParseObject = (function(input) {
         }
     } else {
         input.parsed.call(undefined, {
-            exists: false,
-            obj: false
+            exists: false
         });
     }
 });
